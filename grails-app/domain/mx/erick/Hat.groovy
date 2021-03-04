@@ -1,13 +1,12 @@
 package mx.erick
 
-class Shoes {
+class Hat {
 
   Long id
   String name
   Double price
-  Double number
+  Size sizze
   Color color
-
 
   static constraints = {
   }

@@ -29,9 +29,6 @@ class ShoesController {
         }
 
         if (!shoes.validate()) {
-          shoes.errors.allErrors.each {
-            println it
-          }
           respond shoes.errors, view:'create'
           return
         }
@@ -61,7 +58,10 @@ class ShoesController {
             notFound()
             return
         }
-
+        if (!shoes.validate()) {
+          respond shoes.errors, view:'edit'
+          return
+        }
         try {
             shoesService.save(shoes)
         } catch (ValidationException e) {
