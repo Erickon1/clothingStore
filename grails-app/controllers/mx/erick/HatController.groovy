@@ -2,7 +2,9 @@ package mx.erick
 
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
+import grails.plugin.springsecurity.annotation.Secured
 
+@Secured('ROLE_USER')
 class HatController {
 
     HatService hatService

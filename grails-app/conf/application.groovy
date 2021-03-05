@@ -1,3 +1,4 @@
+grails.plugin.springsecurity.logout.postOnly = false
 
 
 // Added by the Spring Security Core plugin:
@@ -14,7 +15,9 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/**/js/**',       access: ['permitAll']],
 	[pattern: '/**/css/**',      access: ['permitAll']],
 	[pattern: '/**/images/**',   access: ['permitAll']],
-	[pattern: '/**/favicon.ico', access: ['permitAll']]
+	[pattern: '/**/favicon.ico', access: ['permitAll']],
+	[pattern: '/h2-console/**', access: ['ROLE_USER','ROLE_ANONYMOUS','permitAll']],
+	[pattern: '/coat/**', access: ['ROLE_USER']]
 ]
 
 grails.plugin.springsecurity.filterChain.chainMap = [
