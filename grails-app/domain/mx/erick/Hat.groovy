@@ -7,6 +7,7 @@ class Hat {
   Double price
   Size sizze
   Color color
+  Stock stock
 
   static constraints = {
   }

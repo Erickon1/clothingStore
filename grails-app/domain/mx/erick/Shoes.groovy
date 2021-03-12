@@ -7,6 +7,7 @@ class Shoes {
   Double price
   Double number
   Color color
+  Stock stock
 
 
   static constraints = {
