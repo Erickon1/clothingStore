@@ -75,6 +75,9 @@ dependencies {
     
     //Spring security
     compile 'org.grails.plugins:spring-security-core:4.0.3'
+    //mysql
+    runtime 'mysql:mysql-connector-java:8.0.11'
+
 
 }
 
