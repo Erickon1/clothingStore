@@ -29,13 +29,20 @@ class HatController {
             notFound()
             return
         }
+        hat.stock = Stock.get(1)
         if (!hat.validate()) {
           respond hat.errors, view:'create'
           return
         }
 
         try {
-            hatService.save(hat)
+          def tempHat
+          (params.total? params.total as Integer:1)?.times{
+            tempHat = new Hat()
+            bindData(tempHat, hat)
+            hatService.save(tempHat)
+          }
+          hat = tempHat
         } catch (ValidationException e) {
             respond hat.errors, view:'create'
             return

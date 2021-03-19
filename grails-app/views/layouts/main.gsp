@@ -28,7 +28,7 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <g:link uri="/">Home</g:link>
+          <g:link controller="stock" action="create">Stock</g:link>
         </li>
         <li class="nav-item">
           <g:link controller="hat" action="index">Hat</g:link>

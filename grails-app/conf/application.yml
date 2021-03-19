@@ -111,7 +111,7 @@ environments:
     development:
         dataSource:
             dbCreate: update 
-            url: "jdbc:mysql://localhost:3306/clothes?useSSL=false"
+            url: "jdbc:mysql://localhost:3306/clothes?allowPublicKeyRetrieval=true&useSSL=false"
             driverClassName: "com.mysql.cj.jdbc.Driver"
             dialect: org.hibernate.dialect.MySQL8Dialect
             username: "clothes"
