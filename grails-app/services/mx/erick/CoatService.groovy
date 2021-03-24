@@ -1,9 +1,10 @@
 package mx.erick
 
 import grails.gorm.transactions.Transactional
+import grails.web.databinding.DataBinder
 
 @Transactional
-class CoatService {
+class CoatService implements DataBinder{
 
     Coat get(Serializable id){
       Coat.get(id)
@@ -21,8 +22,14 @@ class CoatService {
       Coat.delete(id)
     }
 
-    Coat save(Coat coat){
-      coat.save()
+    Coat save(Coat coat, Integer total = 0){
+      def tempItem
+      total.times{
+        tempItem = new Coat()
+        bindData(tempItem, coat)
+        tempItem.save()
+      }
+      tempItem = total==0 ? coat.save() : tempItem
     }
 
 }

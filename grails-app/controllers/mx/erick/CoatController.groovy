@@ -2,7 +2,9 @@ package mx.erick
 
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
+import grails.plugin.springsecurity.annotation.Secured
 
+@Secured('ROLE_USER')
 class CoatController {
 
     CoatService coatService
@@ -27,13 +29,14 @@ class CoatController {
             notFound()
             return
         }
+        coat.stock = Stock.get(1)
         if (!coat.validate()) {
           respond coat.errors, view:'create'
           return
         }
 
         try {
-            coatService.save(coat)
+            coat = coatService.save(coat, params.total? params.total as Integer:1 )
         } catch (ValidationException e) {
             respond coat.errors, view:'create'
             return

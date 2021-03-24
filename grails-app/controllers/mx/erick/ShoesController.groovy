@@ -2,7 +2,9 @@ package mx.erick
 
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
+import grails.plugin.springsecurity.annotation.Secured
 
+@Secured('ROLE_USER')
 class ShoesController {
 
     ShoesService shoesService
@@ -28,13 +30,14 @@ class ShoesController {
             return
         }
 
+        shoes.stock = Stock.get(1)
         if (!shoes.validate()) {
           respond shoes.errors, view:'create'
           return
         }
 
         try {
-            shoesService.save(shoes)
+            shoes = shoesService.save(shoes, params.total? params.total as Integer:1 )
         } catch (ValidationException e) {
             respond shoes.errors, view:'create'
             return

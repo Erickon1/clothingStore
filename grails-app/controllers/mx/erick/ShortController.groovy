@@ -2,7 +2,9 @@ package mx.erick
 
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
+import grails.plugin.springsecurity.annotation.Secured
 
+@Secured('ROLE_USER')
 class ShortController {
 
     ShortService shortService
@@ -27,13 +29,14 @@ class ShortController {
             notFound()
             return
         }
+        shortt.stock = Stock.get(1)
         if (!shortt.validate()) {
           respond shortt.errors, view:'create'
           return
         }
 
         try {
-            shortService.save(shortt)
+            shortt = shortService.save(shortt, params.total? params.total as Integer:1 )
         } catch (ValidationException e) {
             respond shortt.errors, view:'create'
             return

@@ -1,9 +1,10 @@
 package mx.erick
 
 import grails.gorm.transactions.Transactional
+import grails.web.databinding.DataBinder
 
 @Transactional
-class ShortService {
+class ShortService implements DataBinder{
 
     Short get(Serializable id){
       Short.get(id)
@@ -21,8 +22,14 @@ class ShortService {
       Short.delete(id)
     }
 
-    Short save(Short shortt){
-      shortt.save()
+    Short save(Short shortt, Integer total = 0){
+      def tempItem
+      total.times{
+        tempItem = new Short()
+        bindData(tempItem, shortt)
+        tempItem.save()
+      }
+      tempItem = total==0 ? shortt.save() : tempItem
     }
 
 }

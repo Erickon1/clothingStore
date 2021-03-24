@@ -21,6 +21,8 @@
 <nav class="navbar  navbar-dark bg-dark">
   <div class="container-fluid">
     <g:link uri="/"  class="navbar-brand"  >Naty</g:link>
+    <g:link elementId='_logout' controller='logout'>Logout</g:link>
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
       data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -28,10 +30,7 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <g:link controller="stock" action="create">Stock</g:link>
-        </li>
-        <li class="nav-item">
-          <g:link controller="hat" action="index">Hat</g:link>
+          <g:link controller="stock" action="index">Stock</g:link>
         </li>
       </ul>
     </div>

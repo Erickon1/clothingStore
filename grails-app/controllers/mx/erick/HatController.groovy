@@ -4,7 +4,7 @@ import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
 import grails.plugin.springsecurity.annotation.Secured
 
-@Secured('ROLE_USER')
+@Secured(['ROLE_USER','ROLE_ADMIN'])
 class HatController {
 
     HatService hatService
@@ -20,6 +20,7 @@ class HatController {
         respond hatService.get(id)
     }
 
+    @Secured('ROLE_USER')
     def create() {
         respond new Hat(params)
     }
@@ -36,13 +37,7 @@ class HatController {
         }
 
         try {
-          def tempHat
-          (params.total? params.total as Integer:1)?.times{
-            tempHat = new Hat()
-            bindData(tempHat, hat)
-            hatService.save(tempHat)
-          }
-          hat = tempHat
+          hat = hatService.save(hat, params.total? params.total as Integer:1 )
         } catch (ValidationException e) {
             respond hat.errors, view:'create'
             return

@@ -7,7 +7,7 @@ class Coat {
   Double price
   Size sizze
   Color color
-  Stock stock
+  Stock stock //= Stock.get(1)
 
   static constraints = {
   }
